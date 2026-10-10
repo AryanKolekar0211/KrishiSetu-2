@@ -1157,12 +1157,209 @@
             }
         }
 
+
+
+        /* =========================================================
+           KRISHI SETU UI ENHANCEMENT PASS 1
+           Presentation-only overrides. Existing IDs, API calls,
+           dashboard logic, login checks and history are preserved.
+        ========================================================= */
+        :root {
+            color-scheme: light;
+            --ks-green-950: #12351f;
+            --ks-green-800: #176534;
+            --ks-green-700: #208343;
+            --ks-green-100: #e8f7e8;
+            --ks-border: rgba(44, 119, 61, .16);
+            --ks-shadow: 0 12px 34px rgba(27, 91, 43, .11);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            color: var(--ks-green-950);
+            background-color: #edf7e9;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::after {
+            background: linear-gradient(135deg, rgba(245, 255, 241, .70), rgba(237, 249, 233, .78));
+        }
+
+        .navbar {
+            min-height: 74px;
+            height: auto;
+            padding: 12px clamp(16px, 3vw, 42px);
+            background: rgba(255, 255, 255, .88);
+            border-bottom: 1px solid rgba(36, 115, 52, .14);
+            box-shadow: 0 8px 28px rgba(24, 82, 39, .08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .logo { min-width: 0; gap: 13px; }
+        .logo-icon {
+            flex: 0 0 46px;
+            border-radius: 15px;
+            box-shadow: 0 8px 18px rgba(40, 167, 69, .23);
+        }
+        .logo h2 { color: var(--ks-green-800); font-weight: 800; }
+        .logo span { letter-spacing: .15px; }
+        .farmer-info { gap: 10px; }
+        .status { white-space: nowrap; }
+
+        .container {
+            width: min(100%, 1480px);
+            padding: clamp(20px, 3.2vw, 42px);
+        }
+
+        .welcome { margin-bottom: 30px; }
+        .welcome h1 {
+            font-size: clamp(27px, 3vw, 36px);
+            line-height: 1.15;
+            color: var(--ks-green-800);
+            letter-spacing: -1px;
+        }
+        .welcome p { max-width: 720px; line-height: 1.7; }
+
+        .sensor-grid { gap: 18px; }
+        .sensor-card {
+            border: 1px solid var(--ks-border);
+            border-radius: 22px;
+            padding: clamp(18px, 2vw, 25px);
+            box-shadow: var(--ks-shadow);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .sensor-card::before { height: 4px; }
+        .sensor-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 38px rgba(35, 120, 48, .16);
+        }
+        .sensor-icon { border-radius: 15px; }
+        .sensor-value { letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+
+        .panel, .history-panel {
+            border: 1px solid var(--ks-border);
+            border-radius: 22px;
+            box-shadow: var(--ks-shadow);
+            background: rgba(255, 255, 255, .94);
+        }
+        .panel-header h2, .history-header h2 { letter-spacing: -.35px; }
+        .main-grid { gap: 22px; }
+
+        .logout-button {
+            min-height: 40px;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        button, a { -webkit-tap-highlight-color: transparent; }
+        button { transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+        button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+            outline: 3px solid rgba(32, 131, 67, .35);
+            outline-offset: 3px;
+        }
+
+        .history-table-container {
+            border: 1px solid rgba(44, 119, 61, .12);
+            border-radius: 14px;
+            overflow-x: auto;
+        }
+        .history-table { min-width: 650px; border-collapse: separate; border-spacing: 0; }
+        .history-table th {
+            background: #eff9ed;
+            color: #285b34;
+            font-size: 12px;
+            letter-spacing: .35px;
+            text-transform: uppercase;
+        }
+        .history-table td { font-variant-numeric: tabular-nums; }
+        .history-table tr:last-child td { border-bottom: 0; }
+
+        ::selection { color: #103b1c; background: #c9efc5; }
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: #edf6ea; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #b8d9b4; border: 2px solid #edf6ea; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8fbd89; }
+
+        @media (max-width: 760px) {
+            .navbar { align-items: center; gap: 12px; }
+            .farmer-info { gap: 8px; }
+            .avatar { width: 36px; height: 36px; }
+            .container { padding: 22px 15px; }
+            .panel, .history-panel { padding: 18px; border-radius: 18px; }
+            .sensor-card { border-radius: 18px; }
+        }
+
+        @media (max-width: 420px) {
+            .logo { gap: 8px; }
+            .logo-icon { width: 38px; height: 38px; flex-basis: 38px; font-size: 20px; }
+            .logo h2 { font-size: 17px; }
+            .logo span { font-size: 10px; }
+            .logout-button { padding: 8px 10px; font-size: 12px; }
+            .avatar { display: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+
+
+        /* NOTIFICATIONS */
+        .notification-wrap { position: relative; }
+        .notification-button {
+            position: relative; border: 1px solid #b7dfae; background: #f2ffef;
+            color: #17652d; border-radius: 12px; min-width: 44px; height: 42px;
+            padding: 0 12px; font-size: 20px; cursor: pointer;
+        }
+        .notification-count {
+            position: absolute; top: -6px; right: -5px; min-width: 19px; height: 19px;
+            padding: 0 4px; border-radius: 99px; background: #d32f2f; color: white;
+            font: bold 11px Arial, sans-serif; display: none; align-items: center; justify-content: center;
+        }
+        .notification-panel {
+            display: none; position: absolute; right: 0; top: 50px; width: min(350px, calc(100vw - 30px));
+            max-height: 380px; overflow-y: auto; background: white; border: 1px solid #d6e9d0;
+            border-radius: 14px; box-shadow: 0 12px 35px rgba(20,70,30,.2); z-index: 500; padding: 14px;
+        }
+        .notification-panel.open { display: block; }
+        .notification-panel-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+        .notification-panel-head h3 { font-size: 16px; color:#17652d; }
+        .notification-actions { display:flex; gap:8px; }
+        .notification-actions button, .notification-permission {
+            border:1px solid #cce4c5; background:#f4fff1; color:#17652d; border-radius:8px;
+            padding:7px 9px; cursor:pointer; font-size:12px;
+        }
+        .notification-item { padding:10px; margin-top:8px; border-radius:10px; background:#f6faf4; border-left:4px solid #6aaf58; }
+        .notification-item.warning { border-left-color:#e69b22; background:#fff9ed; }
+        .notification-item.error { border-left-color:#d33b35; background:#fff1f0; }
+        .notification-item strong { display:block; font-size:13px; margin-bottom:4px; }
+        .notification-item p { font-size:12px; line-height:1.45; color:#4d604d; }
+        .notification-item time { display:block; margin-top:5px; font-size:10px; color:#788778; }
+        .notification-empty { color:#718071; font-size:13px; padding:16px 4px; text-align:center; }
+        .notification-toast-area { position:fixed; top:86px; right:18px; z-index:1000; width:min(360px, calc(100vw - 36px)); display:grid; gap:10px; pointer-events:none; }
+        .notification-toast { background:#fff; border:1px solid #d9e9d3; border-left:5px solid #58a94a; border-radius:12px; padding:13px 15px; box-shadow:0 8px 25px rgba(0,0,0,.15); animation: notificationSlide .25s ease-out; }
+        .notification-toast.warning { border-left-color:#e69b22; }
+        .notification-toast.error { border-left-color:#d33b35; }
+        .notification-toast strong { display:block; margin-bottom:4px; font-size:14px; }
+        .notification-toast p { font-size:12px; line-height:1.4; color:#4d604d; }
+        @keyframes notificationSlide { from { transform:translateY(-8px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+        @media (max-width:600px) { .notification-panel { right:-55px; } .notification-toast-area { top:78px; right:10px; width:calc(100vw - 20px); } }
+
     </style>
 
 </head>
 
 
 <body>
+    <div class="notification-toast-area" id="notificationToastArea" aria-live="polite" aria-atomic="false"></div>
 
 
     <!-- =========================================================
@@ -1202,6 +1399,26 @@
 
             </div>
 
+
+            <div class="notification-wrap">
+                <button class="notification-button" id="notificationButton" type="button"
+                    onclick="toggleNotificationPanel()" aria-label="Open notifications" aria-expanded="false" title="Notifications">
+                    ♧<span class="notification-count" id="notificationCount">0</span>
+                </button>
+                <div class="notification-panel" id="notificationPanel" aria-live="polite">
+                    <div class="notification-panel-head">
+                        <h3>Notifications</h3>
+                        <div class="notification-actions">
+                            <button type="button" onclick="clearNotifications()">Clear</button>
+                            <button type="button" onclick="toggleNotificationPanel(false)">Close</button>
+                        </div>
+                    </div>
+                    <button class="notification-permission" id="desktopNotificationButton" type="button" onclick="enableDesktopNotifications()">
+                        Enable desktop notifications
+                    </button>
+                    <div id="notificationList"><div class="notification-empty">No notifications yet.</div></div>
+                </div>
+            </div>
 
             <button class="logout-button" onclick="logoutFarmer()" type="button">
                 Logout
@@ -1735,6 +1952,140 @@
            FARMER AUTHENTICATION
         ========================================================= */
 
+        /* =========================================================
+           IN-SITE AND OPTIONAL DESKTOP NOTIFICATIONS
+        ========================================================= */
+        const KRISHI_NOTIFICATION_KEY = "krishiSetuNotifications";
+        const MAX_KRISHI_NOTIFICATIONS = 30;
+        let notificationState = {};
+        let lastConnectionNotification = null;
+
+        function getStoredNotifications() {
+            try {
+                const stored = JSON.parse(localStorage.getItem(KRISHI_NOTIFICATION_KEY) || "[]");
+                return Array.isArray(stored) ? stored : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function renderNotifications() {
+            const list = document.getElementById("notificationList");
+            const count = document.getElementById("notificationCount");
+            if (!list || !count) return;
+            const notifications = getStoredNotifications();
+            count.textContent = notifications.length > 9 ? "9+" : String(notifications.length);
+            count.style.display = notifications.length ? "flex" : "none";
+            if (!notifications.length) {
+                list.innerHTML = '<div class="notification-empty">No notifications yet.</div>';
+                return;
+            }
+            list.innerHTML = notifications.map(function(item) {
+                const safe = function(value) {
+                    return String(value ?? "").replace(/[&<>"']/g, function(ch) {
+                        return ({"&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"})[ch];
+                    });
+                };
+                return '<div class="notification-item ' + safe(item.level) + '"><strong>' + safe(item.title) +
+                    '</strong><p>' + safe(item.message) + '</p><time>' + safe(item.time) + '</time></div>';
+            }).join("");
+        }
+
+        function toggleNotificationPanel(forceState) {
+            const panel = document.getElementById("notificationPanel");
+            const button = document.getElementById("notificationButton");
+            if (!panel) return;
+            const open = typeof forceState === "boolean" ? forceState : !panel.classList.contains("open");
+            panel.classList.toggle("open", open);
+            if (button) button.setAttribute("aria-expanded", String(open));
+        }
+
+        function showNotification(title, message, level = "info", key = "") {
+            const now = Date.now();
+            if (key && notificationState[key]) return;
+            if (key) notificationState[key] = true;
+            const notification = {
+                id: now + Math.random().toString(16).slice(2), title, message, level,
+                time: new Date().toLocaleString()
+            };
+            const notifications = getStoredNotifications();
+            notifications.unshift(notification);
+            localStorage.setItem(KRISHI_NOTIFICATION_KEY, JSON.stringify(notifications.slice(0, MAX_KRISHI_NOTIFICATIONS)));
+            renderNotifications();
+
+            const area = document.getElementById("notificationToastArea");
+            if (area) {
+                const toast = document.createElement("div");
+                toast.className = "notification-toast " + level;
+                const heading = document.createElement("strong"); heading.textContent = title;
+                const paragraph = document.createElement("p"); paragraph.textContent = message;
+                toast.append(heading, paragraph); area.prepend(toast);
+                window.setTimeout(function() { toast.remove(); }, 6500);
+            }
+
+            if ("Notification" in window && Notification.permission === "granted") {
+                try {
+                    const desktop = new Notification(title, { body: message, tag: key || notification.id });
+                    desktop.onclick = function() { window.focus(); toggleNotificationPanel(true); desktop.close(); };
+                } catch (error) { console.warn("Desktop notification could not be shown:", error); }
+            }
+        }
+
+        async function enableDesktopNotifications() {
+            const button = document.getElementById("desktopNotificationButton");
+            if (!("Notification" in window)) {
+                if (button) button.textContent = "Desktop notifications are not supported";
+                showNotification("Desktop notifications unavailable", "This browser does not support desktop notifications.", "warning");
+                return;
+            }
+            try {
+                const permission = await Notification.requestPermission();
+                if (permission === "granted") {
+                    if (button) button.textContent = "Desktop notifications enabled ✓";
+                    showNotification("Desktop notifications enabled", "Krishi Setu can now send desktop alerts when important farm conditions change.", "info");
+                } else {
+                    if (button) button.textContent = "Desktop permission not granted — try again";
+                    showNotification("Desktop permission not granted", "In-site notifications will continue to work. You can allow notifications in your browser settings.", "warning");
+                }
+            } catch (error) {
+                console.error("Notification permission error:", error);
+            }
+        }
+
+        function clearNotifications() {
+            localStorage.removeItem(KRISHI_NOTIFICATION_KEY);
+            renderNotifications();
+        }
+
+        function assessFarmNotifications(values) {
+            const moisture = values.moisture === null ? null : Number(values.moisture);
+            const water = values.waterLevel === null ? null : Number(values.waterLevel);
+            const temperature = values.temperature === null ? null : Number(values.temperature);
+            const conditions = {
+                drySoil: moisture !== null && moisture <= 30,
+                lowWater: water !== null && water <= 40,
+                criticalWater: water !== null && water <= 20,
+                highTemperature: temperature !== null && temperature >= 35
+            };
+            const alerts = [
+                ["drySoil", conditions.drySoil, "Soil moisture is low", moisture === null ? "" : `Soil moisture is ${Math.round(moisture)}%. Check whether irrigation is needed.`, "warning"],
+                ["lowWater", conditions.lowWater && !conditions.criticalWater, "Water tank level is low", water === null ? "" : `Water level is ${Math.round(water)}%. Please plan to refill the tank.`, "warning"],
+                ["criticalWater", conditions.criticalWater, "Critical water level", water === null ? "" : `Water level is only ${Math.round(water)}%. Refill the tank; avoid running the pump if water is insufficient.`, "error"],
+                ["highTemperature", conditions.highTemperature, "High temperature detected", temperature === null ? "" : `Temperature is ${temperature.toFixed(1)}°C. Check crop and irrigation needs.`, "warning"]
+            ];
+            alerts.forEach(function(alert) {
+                const key = alert[0], active = alert[1];
+                if (active && !notificationState[key]) showNotification(alert[2], alert[3], alert[4], key);
+                if (!active) notificationState[key] = false;
+            });
+        }
+
+        renderNotifications();
+        if ("Notification" in window && Notification.permission === "granted") {
+            const permissionButton = document.getElementById("desktopNotificationButton");
+            if (permissionButton) permissionButton.textContent = "Desktop notifications enabled ✓";
+        }
+
         function getLoggedInFarmer() {
             const token = localStorage.getItem("krishi_token");
             const farmerData = localStorage.getItem("krishi_farmer");
@@ -1962,6 +2313,12 @@
                 }
 
                 apiOnline = true;
+                if (lastConnectionNotification === false) {
+                    showNotification("Backend connection restored", "Live sensor data is updating again.", "info", "connectionRestored");
+                }
+                lastConnectionNotification = true;
+                notificationState.connectionLost = false;
+                notificationState.connectionRestored = false;
 
             } else {
 
@@ -1979,6 +2336,12 @@
                 }
 
                 apiOnline = false;
+                if (lastConnectionNotification !== false) {
+                    showNotification("Backend connection lost", "Krishi Setu cannot reach the sensor backend. Check that the Flask server and ESP32 serial connection are running.", "error", "connectionLost");
+                }
+                lastConnectionNotification = false;
+                notificationState.connectionRestored = false;
+                notificationState.connectionLost = false;
             }
         }
 
@@ -3080,6 +3443,8 @@
                 updateDashboard(values);
 
                 updateAdvisory(values);
+
+                assessFarmNotifications(values);
 
                 updateSerialMonitor(values);
 
